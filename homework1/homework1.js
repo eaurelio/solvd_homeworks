@@ -1,6 +1,8 @@
-function stringPlus(string1, string2) {
+String.prototype.plus = function (str) {
   let output = "";
   let carry = 0;
+  let string1 = this.toString();
+  let string2 = str.toString();
 
   for (
     let i = string1.length - 1, j = string2.length - 1;
@@ -16,11 +18,13 @@ function stringPlus(string1, string2) {
   }
 
   return output;
-}
+};
 
-function stringMinus(string1, string2) {
+String.prototype.minus = function (str) {
   let output = "";
   let borrow = 0;
+  let string1 = this.toString();
+  let string2 = str.toString();
 
   for (
     let i = string1.length - 1, j = string2.length - 1;
@@ -44,10 +48,12 @@ function stringMinus(string1, string2) {
   output = output.replace(/^0+/, "");
 
   return output || "0";
-}
+};
 
-function stringMultiply(string1, string2) {
+String.prototype.multiply = function (str) {
   let output = "";
+  let string1 = this.toString();
+  let string2 = str.toString();
 
   for (let j = string2.length - 1; j >= 0; j--) {
     let carry = 0;
@@ -69,54 +75,13 @@ function stringMultiply(string1, string2) {
       tempResult = digitProduct.toString() + tempResult;
     }
 
-    output = stringPlus(output, tempResult);
+    output = output.plus(tempResult);
   }
 
-  output = output.replace(/^0+/, "");
+  return output;
+};
 
-  return output || "0";
-}
-
-function stringDivides(dividend, divisor) {
-  if (divisor === "0") {
-    throw new Error("Divisão por zero não é permitida.");
-  }
-
-  let result = "";
-  let currentQuotient = "";
-
-  for (let i = 0; i < dividend.length; i++) {
-    currentQuotient += dividend[i];
-
-    currentQuotient = currentQuotient.replace(/^0+/, "");
-
-    let quotient = "0";
-
-    while (
-      currentQuotient !== "" &&
-      isGreaterOrEqual(currentQuotient, divisor)
-    ) {
-      let remainder = currentQuotient;
-      let count = "0";
-
-      while (isGreaterOrEqual(remainder, divisor)) {
-        remainder = stringMinus(remainder, divisor);
-        count = stringPlus(count, "1");
-      }
-
-      currentQuotient = remainder;
-      quotient = stringPlus(quotient, count);
-    }
-
-    result += quotient;
-  }
-
-  result = result.replace(/^0+/, "");
-
-  return result || "0";
-}
-
-function stringDivide(dividend, divisor) {
+String.prototype.divide = function (str) {
   function isGreaterOrEqual(num1, num2) {
     num1 = num1.replace(/^0+/, "");
     num2 = num2.replace(/^0+/, "");
@@ -131,11 +96,14 @@ function stringDivide(dividend, divisor) {
 
     return true;
   }
-  if (divisor === "0") {
+
+  if (str === "0") {
     console.error("Division by zero is not allowed.");
     return;
   }
 
+  let dividend = this.toString();
+  let divisor = str.toString();
   let output = "";
   let remainder = "";
 
@@ -145,8 +113,8 @@ function stringDivide(dividend, divisor) {
     let count = "0";
 
     while (isGreaterOrEqual(remainder, divisor)) {
-      remainder = stringMinus(remainder, divisor);
-      count = stringPlus(count, "1");
+      remainder = remainder.minus(divisor);
+      count = count.plus("1");
     }
 
     output += count;
@@ -155,12 +123,11 @@ function stringDivide(dividend, divisor) {
   output = output.replace(/^0+/, "");
 
   return output || "0";
-}
+};
 
-const str1 = "65465321654987654621321654987";
-const str2 = "6545465654654654654654654654";
+const str1 =
+  "222222222222222222222222222222222222222222222222222222222222222222";
+const str2 =
+  "222222222222222222222222222222222222222222222222222222222222222222";
 
-console.log(stringPlus(str1, str2));
-console.log(stringMinus(str1, str2));
-console.log(stringMultiply(str1, str2));
-console.log(stringDivide(str1, str2));
+console.log(str1.plus(str2));
