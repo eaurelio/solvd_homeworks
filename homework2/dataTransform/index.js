@@ -29,20 +29,90 @@ const dataTransform = {
     if (typeof value !== "boolean") {
       throw new Error("Input type must be boolean");
     }
+
     return !value;
   },
 
   convertToNumber: function (value) {
-    const output = parseFloat(value);
-    if (isNaN(output)) {
-      throw new Error("The type conversion was unsuccessful");
+    if (typeof value === "number") return value;
+    if (typeof value === "boolean") return value ? 1 : 0;
+    if (typeof value === "string") {
+      const parsedValue = parseFloat(value);
+      if (!isNaN(parsedValue)) return parsedValue;
+    } else if (typeof value === "object" && value !== null) {
+      return convertToNumber(JSON.stringify(value));
     }
-    return output;
+
+    throw new Error("Unable to convert value to number");
   },
+
+  coerceToType: function (value, type) {
+    if (typeof type !== "string") {
+      throw new Error("Type must be specified as a string");
+    }
+
+    switch (type) {
+      case "string":
+        return String(value);
+      case "number":
+        return Number(value);
+      case "int":
+        return parseInt(value);
+      case "float":
+        return parseFloat(value);
+      case "date":
+        const dateValue = new Date(value);
+        if (isNaN(dateValue.getTime())) {
+          throw new Error("Invalid date format");
+        }
+        return dateValue;
+      case "boolean":
+        return Boolean(value);
+      default:
+        throw new Error("Invalid type specified");
+    }
+  },
+
   stringDivide: function (string, delimiter) {
     if (typeof string !== "string") {
       throw new Error("Input type must be a string");
     }
+
+    return string.split(delimiter);
+  },
+
+  objectMerge: function (array) {
+    if (!Array.isArray(array)) {
+      throw new Error("type of element in array must be object");
+    }
+
+    let output = {};
+    for (const el of array) {
+      if (typeof el !== "object") {
+        throw new Error("type of element in array must be object");
+      }
+      output = { ...output, ...el };
+    }
+
+    return output;
+  },
+
+  emailValidator: function (email) {
+    if (typeof email !== "string") {
+      throw new Error("input type must be string");
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    return emailRegex.test(email);
+  },
+
+  passwordValidator: function (password) {
+    const passwordRegex = new RegExp(
+      "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$"
+    );
+
+    return passwordRegex.test(password);
   },
 };
 
