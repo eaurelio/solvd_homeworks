@@ -39,11 +39,14 @@ const arr1 = [obj1, obj2, obj3];
 
 console.log(dataTransform.objectMerge(arr1));
 
-// emailValidator
-const email = "valid@mail.com";
-console.log(dataTransform.emailValidator(email));
+// Converting Celcius to Fahrenheit
+console.log(dataTransform.convertCelciusToFahrenheit("33.5"));
 
-// passwordValidator -
-// Minimum 8 characters, lowercase and uppercase letters, must contain numbers and special characters.
-const password = "2154548798";
-console.log(dataTransform.passwordValidator(password));
+// Converting Fahrenheit to Celcius
+console.log(dataTransform.convertFahrenheitToCelcius(92.3));
+
+// Converting USD to other currencies
+dataTransform
+  .USDConvertTo(1, undefined || "BRL", 4)
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
