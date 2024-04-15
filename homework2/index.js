@@ -18,14 +18,15 @@ console.log(
   })
 );
 
-// invertBoolean
+invertBoolean
 console.log(dataTransform.invertBoolean(true));
 
 // convertToNumber
 console.log(dataTransform.convertToNumber(true));
 
 // coerceToType;
-console.log(dataTransform.coerceToType("2132", "int"));
+console.log(dataTransform.coerceToType(2132, "string"));
+console.log(typeof(dataTransform.coerceToType(2132, "string")))
 
 // stringDivide
 const string = "sdfkllkjs-sdlkjlkjsdf-lskdjksjd";

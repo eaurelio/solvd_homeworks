@@ -1,11 +1,12 @@
 const dataTransform = {
-  addValues: function (value, value2) {
-    if (typeof value === "string" && typeof value2 === "string") {
-      return `${value} ${value2}`;
+  addValues: function (value1, value2) {
+    if (typeof value1 === "string" && typeof value2 === "string") {
+      return `${value1}${value2}`;
     }
 
-    if (typeof value === "number" && typeof value2 === "number") {
-      return value + value2;
+    if (typeof value1 === "number" && !isNaN(value1) &&
+        typeof value2 === "number" && !isNaN(value2)) {
+      return value1 + value2;
     }
 
     throw new Error("The input types are invalid!");
