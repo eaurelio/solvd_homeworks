@@ -1,5 +1,4 @@
 // TASK 1 - Immutability and Pure Functions
-
 const products = [
   { name: "Milk", price: 2.5 },
   { name: "Bread", price: 1.0 },

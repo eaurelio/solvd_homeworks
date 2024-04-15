@@ -1,5 +1,4 @@
 // TASK 3 - Closures and Higher-Order Functions
-
 const createCounter = () => {
   let count = 0;
   function counter() {
@@ -9,6 +8,9 @@ const createCounter = () => {
   return counter;
 }
 const counter = createCounter();
+// console.log(counter())
+// console.log(counter())
+// console.log(counter())
 
 // ---------------------------------------------------------------------------
 
