@@ -1,5 +1,4 @@
 // TASK 2 - Function Composition and Point-Free Style
-
 const person = { firstName: "Klaus", lastName: "Meine" };
 const getFullName = (person) => `${person.firstName} ${person.lastName}`;
 

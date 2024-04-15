@@ -1,5 +1,4 @@
 // TASK 4 - Recursion and Tail Call Optimization
-
 function calculateFactorial(n, aggegator = 1) {
   if (n === 0) {
     return aggegator;

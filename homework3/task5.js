@@ -1,3 +1,4 @@
+// TASK 4 - Recursion and Tail Call Optimization
 function lazyMap(array, mappingFunction) {
   let position = 0;
 
