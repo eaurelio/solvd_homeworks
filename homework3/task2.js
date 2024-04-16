@@ -2,11 +2,11 @@
 const person = { firstName: "Klaus", lastName: "Meine" };
 const getFullName = (person) => `${person.firstName} ${person.lastName}`;
 
-// console.log(getFullName(person));
+console.log(getFullName(person));
 
 // ---------------------------------------------------------------------------
 const items = "Radish Lettuce Tomato Carrot Cucumber Carrot Spinach Kale Pepper Lettuce Broccoli Cauliflower Cucumber Radish Celery Asparagus Zucchini Eggplant Spinach Beans Sprouts Arugula Artichoke Radish Lettuce Peas Onion Broccoli Carrot";
-const items2 = 'hello Hello hellO   !!!'
+const items2 = 'hello Hello    hellO          !!!'
 
 const cleaningInput = (input) => input.toLowerCase().replace(/ +/g, ' ').trim();
 const splitString = (input) => input.split(" ");
@@ -15,8 +15,8 @@ const sortArray = (array) => array.sort();
 
 const filterUniqueWords = (input) => sortArray(filterArray(splitString(cleaningInput((input)))));
 
+console.table(filterUniqueWords(items));
 console.table(filterUniqueWords(items2));
-console.log(splitString(cleaningInput(items)))
 
 // ---------------------------------------------------------------------------
 
@@ -60,4 +60,4 @@ const getAverageGrade = (students) => {
   return (getTotalGrade(students) / (students.length * students[0].grades.length)).toFixed(2);
 }
 
-// console.log(getAverageGrade(students));
+console.log(getAverageGrade(students));
