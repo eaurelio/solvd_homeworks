@@ -8,7 +8,7 @@ console.log(getFullName(person));
 const items = "Radish Lettuce Tomato Carrot Cucumber Carrot Spinach Kale Pepper Lettuce Broccoli Cauliflower Cucumber Radish Celery Asparagus Zucchini Eggplant Spinach Beans Sprouts Arugula Artichoke Radish Lettuce Peas Onion Broccoli Carrot";
 const items2 = 'hello Hello    hellO          !!!'
 
-const cleaningInput = (input) => input.toLowerCase().replace(/ +/g, ' ').trim();
+const cleaningInput = (input) => input.toLowerCase().replace(/[^a-z ]+/g, ' ').replace(/ +/g, ' ').trim();
 const splitString = (input) => input.split(" ");
 const filterArray = (array) => array.filter((element, index) => array.indexOf(element) === index);
 const sortArray = (array) => array.sort();
