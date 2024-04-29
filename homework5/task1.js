@@ -1,24 +1,18 @@
-// -------------------------------
 function customFilterUnique(array, callback) {
-  const unique = [];
-  const map = new Map();
-
-  for (const item of array) {
-    const key = callback(item);
-    if (!map.has(key)) {
-      map.set(key, true);
-      unique.push(item);
-    }
-  }
-
-  return unique;
+  const counts = {};
+  
+  array.forEach(item => {
+    const value = callback(item);
+    counts[value] = (counts[value] || 0) + 1;
+  });
+  
+  const uniqueValues = array.filter(item => {
+    const value = callback(item);
+    return counts[value] === 1;
+  });
+  
+  return uniqueValues;
 }
-
-// Using array of numbers
-const numbers = [1,1,2,3,3,4,5,6,6,6,7,8,9]
-
-const uniqueNumbers = customFilterUnique(numbers, (el) => el)
-console.log(uniqueNumbers)
 
 // Using array of objects
 const person = [
@@ -34,6 +28,12 @@ const person = [
   { id: 8, name: 'Tomasz' }
 ];
 
-const uniqueObjects = customFilterUnique(person, (obj) => obj.id);
+const uniqueObjects = customFilterUnique(person, (item) => item.id);
 console.log(uniqueObjects);
 
+
+// Using array of numbers
+const numbers = [1,1,2,3,3,4,5,6,6,6,7,8,9]
+
+const uniqueNumbers = customFilterUnique(numbers, (el) => el)
+console.log(uniqueNumbers)
