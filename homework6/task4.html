@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Debounce test</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0; 
+    background-color: #f7f7f7;
+  }
+  .search-container {
+    width: 500px; 
+    background: #ffffff; 
+    color: #333333; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="search-container">
+  <input type="text" id="search-input" placeholder="Enter your search here..." />
+</div>
+
+<script>
+function debounce(func, delay) {
+  let timeoutId;
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
+function debouncedSearch(query) {
+  console.log("Searching for:", query);
+}
+
+const debouncedSearchHandler = debounce(debouncedSearch, 300);
+
+document.getElementById("search-input").addEventListener("input", (event) => {
+  debouncedSearchHandler(event.target.value);
+});
+</script>
+</body>
+</html>
