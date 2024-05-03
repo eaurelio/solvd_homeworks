@@ -6,26 +6,26 @@ const promises = [
 ];
 
 function promiseAllSettled(promises) {
+  let results = [];
+  let completed = 0;
+
   return new Promise((resolve) => {
-    const result = [];
-
     promises.forEach((promise, index) => {
-      promise
-        .then((value) => handleResolvedPromise(index, value))
-        .catch((reason) => handleResolvedPromise(index, reason));
+      Promise.resolve(promise)
+        .then((value) => {
+          results[index] = { status: "fulfilled", value };
+          completed += 1;
+          if (completed === promises.length) resolve(results);
+        })
+        .catch((reason) => {
+          results[index] = { status: "rejected", reason };
+          completed += 1;
+          if (completed === promises.length) resolve(results);
+        });
     });
-
-    function handleResolvedPromise(index, value) {
-      result[index] = { status: value };
-
-      if (result.length === promises.length) {
-        resolve(result);
-      }
-    }
   });
 }
 
 promiseAllSettled(promises).then((results) => {
-  console.log("All promises settled");
-  console.table(results);
+  console.log("All promises settled", results);
 });
