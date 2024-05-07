@@ -2,7 +2,7 @@ class Order {
   constructor(cart) {
     this._user = cart.getUser();
     this._items = cart.getItems();
-    this._totalPrice = this.calculateTotalPrice();
+    this._totalPrice = cart.getTotalPrice();
     this._orderDate = new Date;
     this._orderNumber = Math.floor(Math.random() * 100000);
   }
@@ -25,14 +25,6 @@ class Order {
 
   getOrderNumber(){
     return this._orderNumber;
-  }
-
-  calculateTotalPrice() {
-    let totalPrice = 0;
-    for (const item of this._items) {
-      totalPrice += item.book.getPrice() * item.quantity;
-    }
-    return totalPrice.toFixed(2);
   }
 }
 

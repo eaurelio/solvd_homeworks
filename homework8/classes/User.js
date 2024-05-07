@@ -20,16 +20,21 @@ class User {
     return this._age;
   }
   setAge(age) {
-    if (typeof age !== "number" || !isNaN(age)) {
+    if (typeof age !== "number" || isNaN(age)) {
       throw new Error("age must be a number");
     }
     this._age = age;
   }
   getPhone() {
-    return this._phone;
+    const phoneStr = this._phone.toString();
+    const areaCode = phoneStr.slice(0, 2);
+    const prefix = phoneStr.slice(2, 6);
+    const lineNumber = phoneStr.slice(6);
+    return `(${areaCode}) ${prefix}-${lineNumber}`;
   }
+  
   setPhone(phone) {
-    if (typeof phone !== "number" || !isNaN(phone) || phone.length < 8) {
+    if (typeof phone !== "number" || isNaN(phone) || phone.toString().length < 10) {
       throw new Error("phone must be a number");
     }
     this._phone = phone;
