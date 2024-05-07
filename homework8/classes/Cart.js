@@ -6,15 +6,24 @@ class Cart {
 
   addItem(book, quantity = 1) {
     if(!book.getAvailability()){
-      throw new Error(`Book ${book.title} is not available`)
+      throw new Error(`Book ${book.getTitle()} is not available`)
     }
-    this.items.push({ book, quantity });
+    const foundItem = this.items.find(item => item.book === book);
+    if (foundItem) {
+      foundItem.quantity += quantity;
+    } else {
+      this.items.push({ book, quantity });
+    }
   }
 
   removeItem(book) {
-    const index = this.items.findIndex(item => item.book === book);
-    if (index !== -1) {
-      this.items.splice(index, 1);
+    const foundItem = this.items.find(item => item.book === book);
+    if (foundItem) {
+      foundItem.quantity -= 1;
+      if (foundItem.quantity === 0) {
+        const index = this.items.indexOf(foundItem);
+        this.items.splice(index, 1);
+      }
     }
   }
 

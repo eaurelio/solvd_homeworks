@@ -1,10 +1,11 @@
 class Book {
-  constructor(title, author, description, ISBN, price, availability) {
+  constructor(title, author, description, ISBN, price, category, availability) {
     this._title = title;
     this._author = author;
     this._description = description;
     this._ISBN = ISBN;
     this._price = price;
+    this._category = category;
     this._availability = availability;
   }
 
@@ -57,13 +58,24 @@ class Book {
   }
 
   setPrice(price) {
-    if (typeof price !== 'number' || !isNaN(price)){
-      throw new Error('Price must be a number')
+    if (typeof price !== "number" || isNaN(price)) {
+      throw new Error("Price must be a number");
     }
     if (price <= 0) {
       throw new Error("Price must be greater than 0");
     }
     this._price = price;
+  }
+
+  getCategory() {
+    return this._category;
+  }
+
+  setCategory(category) {
+    if (category.length < 3) {
+      throw new Error("Category must be at least 3 characters");
+    }
+    this._category = category;
   }
 
   getAvailability() {
@@ -79,18 +91,21 @@ class Book {
 }
 
 class FictionBook extends Book {
-  constructor(title, author, description, ISBN, price, availability, genre) {
-    super(title, author, description, ISBN, price, availability);
-    this._genre = genre;
+  constructor(title, author, description, ISBN, price, category, availability, fiction) {
+    super(title, author, description, ISBN, price, category, availability);
+    this._fiction = fiction;
   }
 
-  getGenre() {
-    return this._genre;
+  getFiction() {
+    return this._fiction;
   }
 
-  setGenre(genre) {
-    this._genre = genre;
+  setFiction(fiction) {
+    if(typeof fiction !== 'boolean'){
+      throw new Error('fiction must be true or false')
+    }
+    this._fiction = fiction;
   }
 }
 
-module.exports = {Book,FictionBook}
+module.exports = { Book, FictionBook };
