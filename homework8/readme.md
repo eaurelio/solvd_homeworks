@@ -1,68 +1,120 @@
-# Homework 8
+# Online Bookstore Project
+This project simulates the operation of an online bookstore. It is implemented in JavaScript and uses object-oriented programming.
 
-### Task
+### Functionalities
+The project allows users to search for books, add them to carts, and place orders. It demonstrates the interaction between different classes and the overall functionality of the program.
 
-Design and implement an object-oriented program in JavaScript to simulate the functioning of an online bookstore. This assignment will test your understanding of classes, encapsulation, inheritance, and polymorphism.
+How to Use To use this project, you can instantiate objects from the User, Book, FictionBook, Cart, and Order classes. You can then use the methods of these objects to simulate the functionality of an online bookstore.
 
-### **Part 1: Class Design**
 
-1. **Book Class**: Create a class called `Book` to represent individual books. Each book should have properties like title, author, ISBN, price, and availability.
-2. **User Class**: Create a class called `User` to represent users of the bookstore. Users should have properties like name, email, and a unique user ID.
-3. **Cart Class**: Design a class called `Cart` to simulate a shopping cart. It should have methods to add books, remove books, and calculate the total price of the books in the cart.
-4. **Order Class**: Create an `Order` class to represent a user's order. It should include information about the user, the books ordered, and the total price.
+Classes The project consists of the following classes:
 
-### **Part 2: Implementation**
-
-1. **Create Objects**: Instantiate multiple `Book` objects, representing different books available in the bookstore. Also, create a few `User` objects.
-2. **Add Books to Cart**: Simulate users adding books to their cart by creating instances of the `Cart` class and using its methods.
-3. **Place Orders**: Implement the process of placing an order. Users should be able to create instances of the `Order` class, specifying the books they want to purchase.
-
-### **Part 3: Demonstration**
-
-1. **Create a Scenario**: Design a scenario where users browse books, add them to their carts, and place orders. Simulate interactions between users, carts, and orders.
-2. **Interaction**: Demonstrate how objects of different classes interact with each other. For example, a user interacts with a cart, and a cart interacts with orders.
-3. **Polymorphism**: Utilize polymorphism by treating different types of books (e.g., fiction, non-fiction) uniformly when users add them to the cart.
-
-### **Part 4: Documentation**
-
-1. **Documentation**: Provide clear and concise comments and documentation for your code. Explain the purpose of each class, method, and property. Describe the interaction between different objects and how encapsulation is maintained.
-
-### **Submission**
-
-Submit your JavaScript program along with detailed documentation and comments that explain your code. Ensure that your code is well-structured and adheres to best practices in object-oriented programming.
-
-### **Example**
-
-Here's a simplified example structure to give you an idea of what your code might look like:
-
-```jsx
-class Book {
-  constructor(title, author, isbn, price, availability) {
-    // Properties and methods...
-  }
-}
-
-class User {
-  constructor(name, email, userId) {
-    // Properties and methods...
-  }
-}
-
-class Cart {
-  constructor(user) {
-    // Properties and methods...
-  }
-}
-
-class Order {
-  constructor(user, books) {
-    // Properties and methods...
-  }
-}
-
-// Instantiate objects and simulate bookstore interactions...
+### User Class
+The User class represents the users of the bookstore. Each user has a name, age, phone number, email, and a unique user ID.
+```javascript
+// instantiating class User
+const User = require("./classes/User");
 ```
 
-### **Bonus (Optional)**
+the instance of user expects to receive name, age, telephone number and a valid email as parameters
 
-Implement additional features such as searching for books, applying discounts, handling payments, or integrating a database to store book and user information.
+```javascript
+// creating a user
+const user1 = new User('John Doe', 25, '123456789', 'john@example.com');
+```
+
+### Book Class
+The Book class represents individual books. Each book has a title, author, description, ISBN, price, and availability.
+```javascript
+// instantiating class Book
+const { Book } = require("./classes/Book");
+```
+
+the instance of book expects to receive title, author, description ISBN, price and avaiability as parameters
+
+```javascript
+// creating a book
+const book2 = new Book('A Brief History of Time', 'Stephen Hawking', 'Guide to cosmology', '9780553380163', 18.00, true);
+```
+
+### FictionBook Class
+The FictionBook class inherits from the Book class and adds a genre property. This class is used to represent fiction books.
+```javascript
+// instantiating
+const { FictionBook } = require("./classes/Book");
+```
+
+the instance of book expects to receive title, author, description ISBN, price, avaiability and genre as parameters
+
+```javascript
+// creating a fiction book
+const book1 = new FictionBook('1984', 'George Orwell', 'Dystopian novel', '9780451524935', 10.25, true, 'Fiction');
+```
+
+### Cart Class
+ The Cart class simulates a shopping cart. It has methods to add books, remove books, and calculate the total price of the books in the cart.
+ ```javascript
+// instantiating a Class Cart 
+const Cart = require("./classes/Cart");
+```
+
+the cart expects to receive a user as parameter. You can use the addItem method to add items to cart.
+
+```javascript
+// creating a cart
+const cart1 = new Cart(user1)
+
+// inserting books into the cart
+cart1.addItem(book1)
+cart1.addItem(book2)
+cart1.addItem(book5)
+
+// cart output in console
+Cart {
+  user: User {
+    _id: 942425,
+    _name: 'John Doe',
+    _age: 25,
+    _phone: '123456789',
+    _email: 'john@mail.com'
+  },
+  items: [
+    { book: [FictionBook], quantity: 1 },
+    { book: [Book], quantity: 1 },
+    { book: [FictionBook], quantity: 1 }
+  ]
+}
+```
+
+### Order Class
+The Order class represents a user’s order. It includes information about the user, the ordered books, the total price, the order date, and an order number.
+```javascript
+// instantiating a Class Order
+const Order = require("./classes/Order");
+```
+
+the instance of order expects to receive a cart as parameter
+
+
+```javascript
+const order1 = new Order(cart1)
+
+// output output in console
+Order {
+  _user: User {
+    _id: 942425,
+    _name: 'John Doe',
+    _age: 25,
+    _phone: '123456789',
+    _email: 'john@mail.com'
+  },
+  _items: [
+    { book: [FictionBook], quantity: 1 },
+    { book: [Book], quantity: 1 },
+    { book: [FictionBook], quantity: 1 }
+  ],
+  _totalPrice: '42.24',
+  _orderDate: 2024-05-07T20:54:37.319Z,
+  _orderNumber: 44394
+}
+```
