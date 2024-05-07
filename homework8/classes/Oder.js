@@ -34,7 +34,7 @@
 //   }
 // }
 
-import { readDataFromFile, writeDataToFile } from './dataUtils.js';
+import { readDataFromFile, writeDataToFile } from '../data/dataUtils';
 
 export class Order {
   constructor(userId, books) {

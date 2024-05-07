@@ -57,7 +57,7 @@
 //   }
 // }
 
-import { readDataFromFile, writeDataToFile } from './dataUtils.js';
+import { readDataFromFile, writeDataToFile } from '../data/dataUtils';
 
 export class User {
   constructor(name, age, phone, email, id) {
