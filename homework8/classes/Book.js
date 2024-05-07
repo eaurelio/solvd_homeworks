@@ -90,7 +90,7 @@
 //   }
 // }
 
-import { readDataFromFile, writeDataToFile } from './dataUtils.js';
+import { readDataFromFile, writeDataToFile } from '../data/dataUtils';
 
 export class Book {
   constructor(title, author, description, ISBN, price, availability, gender) {
