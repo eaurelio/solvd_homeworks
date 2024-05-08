@@ -90,22 +90,4 @@ class Book {
   }
 }
 
-class FictionBook extends Book {
-  constructor(title, author, description, ISBN, price, category, availability, fiction) {
-    super(title, author, description, ISBN, price, category, availability);
-    this._fiction = fiction;
-  }
-
-  getFiction() {
-    return this._fiction;
-  }
-
-  setFiction(fiction) {
-    if(typeof fiction !== 'boolean'){
-      throw new Error('fiction must be true or false')
-    }
-    this._fiction = fiction;
-  }
-}
-
-module.exports = { Book, FictionBook };
+module.exports = Book;
