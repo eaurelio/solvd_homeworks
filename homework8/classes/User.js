@@ -1,6 +1,5 @@
-class User {
+class Person {
   constructor(name, age, phone, email) {
-    this._id = Math.floor(Math.random() * 1000000);
     this._name = name;
     this._age = age;
     this._phone = phone;
@@ -51,6 +50,14 @@ class User {
     }
     this._email = email;
   }
+}
+
+class User extends Person {
+  constructor(name, age, phone, email){
+    super(name, age, phone, email)
+    this._id = Math.floor(Math.random() * 1000000);
+  }
+
   getId() {
     return this._id;
   }
