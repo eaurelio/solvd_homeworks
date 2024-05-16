@@ -56,7 +56,7 @@ class Queue {
   }
 }
 
-
+// Creating an instance of Queue
 const queue = new Queue();
 queue.enqueue(10);
 queue.enqueue(20);
