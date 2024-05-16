@@ -1,6 +1,6 @@
 class Stack {
   constructor() {
-    this._items = []; // Membro privado
+    this._items = [];
   }
 
   push(element) {
@@ -30,6 +30,7 @@ class Stack {
   }
 }
 
+// Creating an instance of Stack
 const stack = new Stack();
 stack.push(10);
 stack.push(20);
@@ -84,13 +85,14 @@ class MinMaxStack {
   }
 }
 
+// Creating an instance of MinMaxStack
 const minStack = new MinMaxStack();
 minStack.push(3);
 minStack.push(5);
 minStack.push(2);
 minStack.push(7);
-console.log(minStack.getMin()); // Saída esperada: 2
-console.log(minStack.getMax()); // Saída esperada: 7
+console.log(minStack.getMin()); // expected: 2
+console.log(minStack.getMax()); // expected: 7
 minStack.pop();
-console.log(minStack.getMin()); // Saída esperada: 2
-console.log(minStack.getMax()); // Saída esperada: 5
+console.log(minStack.getMin()); // expected: 2
+console.log(minStack.getMax()); // expected: 5

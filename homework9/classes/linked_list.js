@@ -12,6 +12,7 @@ class LinkedList {
   }
 
   insert(data) {
+    // Method to insert a new node at the end of the linked list.
     const newNode = new Node(data);
     if (this.head === null) {
       this.head = newNode;
@@ -23,6 +24,7 @@ class LinkedList {
   }
 
   delete(data) {
+    // Method to delete a node with the specified data from the linked list.
     if (this.head === null) {
       throw new Error("List is empty"); 
     }
@@ -50,6 +52,7 @@ class LinkedList {
   }
 
   search(data) {
+    // Method to search for a node with the specified data in the linked list.
     let current = this.head;
     while (current !== null) {
       if (current.data === data) {
@@ -64,7 +67,7 @@ class LinkedList {
     let current = this.head;
     let result = "";
     while (current !== null) {
-      result += current.data + " -> ";
+      result += current.data + " >> ";
       current = current.next;
     }
     result += "null";
@@ -86,14 +89,14 @@ class LinkedList {
   }
 }
 
-
+// Create an instance of LinkedList.
 const linkedList = new LinkedList();
 linkedList.insert(100);
 linkedList.insert(200);
 linkedList.insert(300);
-linkedList.printList(); // expected: 100 -> 200 -> 300 -> null
+linkedList.printList(); // expected: 100 >> 200 >> 300 >> null
 linkedList.delete(200);
-linkedList.printList(); // expected: 100 -> 300 -> null
+linkedList.printList(); // expected: 100 >> 300 >> null
 console.log(linkedList.search(200)); // expected: false
 console.log(linkedList.getFirst()); // output: 100
 console.log(linkedList.getLast());  // output: 300

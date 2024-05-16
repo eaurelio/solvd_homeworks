@@ -12,6 +12,7 @@ class BinaryTree {
   }
 
   insert(data) {
+    // Method to insert a new node into the binary tree.
     const newNode = new Node(data);
     if (this.root === null) {
       this.root = newNode;
@@ -21,6 +22,7 @@ class BinaryTree {
   }
 
   insertNode(node, newNode) {
+    // Recursive method to insert a new node into the binary tree.
     if (newNode.data < node.data) {
       if (node.left === null) {
         node.left = newNode;
@@ -28,7 +30,7 @@ class BinaryTree {
         this.insertNode(node.left, newNode);
       }
     } else {
-      // Duplicated items will be inserted on the right 
+      // Duplicated items will be inserted on the right side.
       if (node.right === null) {
         node.right = newNode;
       } else {
@@ -74,6 +76,7 @@ class BinaryTree {
   }
 }
 
+// Create an instance of BinaryTree and perform traversals and search operations.
 const bt = new BinaryTree();
 bt.insert(8);
 bt.insert(3);
@@ -106,6 +109,7 @@ class BinarySearchTree {
   }
 
   insert(data) {
+    // Method to insert a new node into the binary search tree.
     const newNode = new Node(data);
     if (this.root === null) {
       this.root = newNode;
@@ -115,6 +119,7 @@ class BinarySearchTree {
   }
 
   insertNode(node, newNode) {
+    // Recursive method to insert a new node into the binary search tree.
     if (newNode.data < node.data) {
       if (node.left === null) {
         node.left = newNode;
@@ -131,6 +136,7 @@ class BinarySearchTree {
   }
 
   isBST(node, min = null, max = null) {
+    // Method to check if the binary search tree satisfies the BST property.
     if (node === null) {
       return true;
     }
@@ -145,6 +151,7 @@ class BinarySearchTree {
   }
 }
 
+// Create an instance of BinarySearchTree and check if it is a BST.
 const bst = new BinarySearchTree();
 bst.insert(4);
 bst.insert(2);
