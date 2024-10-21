@@ -1,4 +1,4 @@
-// TASK 4 - Recursion and Tail Call Optimization
+// TASK 5: Lazy Evaluation and Generators (*do not use yield)
 function lazyMap(array, mappingFunction) {
   let position = 0;
 
